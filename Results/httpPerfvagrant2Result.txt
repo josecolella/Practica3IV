@@ -1,0 +1,5 @@
+httpPerfvagrant2: Reply Time: 3.5
+httpPerfvagrant2: Reply Time: 3.3
+httpPerfvagrant2: Reply Time: 3.2
+httpPerfvagrant2: Reply Time: 3.0
+httpPerfvagrant2: Reply Time: 2.9

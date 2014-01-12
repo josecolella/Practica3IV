@@ -1,0 +1,1 @@
+httperf --client=0/1 --server=http://ivmachine.cloudapp.net/ --port=80 --uri=/index.html --rate=10 --send-buffer=4096 --recv-buffer=16384 --num-conns=1000 --num-calls=1

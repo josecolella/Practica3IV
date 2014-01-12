@@ -1,0 +1,44 @@
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking ivmachine2.cloudapp.net (be patient)
+
+
+Server Software:        localhost
+Server Hostname:        ivmachine2.cloudapp.net
+Server Port:            80
+
+Document Path:          /index.html
+Document Length:        9 bytes
+
+Concurrency Level:      100
+Time taken for tests:   6.489 seconds
+Complete requests:      1000
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      1000
+Total transferred:      205000 bytes
+HTML transferred:       9000 bytes
+Requests per second:    154.10 [#/sec] (mean)
+Time per request:       648.908 [ms] (mean)
+Time per request:       6.489 [ms] (mean, across all concurrent requests)
+Transfer rate:          30.85 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:       75  275 227.4    211    2247
+Processing:    68  335 721.1    185    5458
+Waiting:       68  332 721.3    183    5458
+Total:        190  609 779.1    394    5974
+
+Percentage of the requests served within a certain time (ms)
+  50%    394
+  66%    447
+  75%    578
+  80%    689
+  90%    917
+  95%   1355
+  98%   2937
+  99%   5972
+ 100%   5974 (longest request)

@@ -1,0 +1,5 @@
+abazure1: Time per Request: 456.434
+abazure1: Time per Request: 476.614
+abazure1: Time per Request: 626.638
+abazure1: Time per Request: 659.317
+abazure1: Time per Request: 625.706

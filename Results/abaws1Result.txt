@@ -1,0 +1,5 @@
+abaws1: Time per Request: 459.982
+abaws1: Time per Request: 485.366
+abaws1: Time per Request: 665.690
+abaws1: Time per Request: 610.608
+abaws1: Time per Request: 629.185

@@ -1,0 +1,5 @@
+httpPerfaws1: Reply Time: 106.8
+httpPerfaws1: Reply Time: 110.8
+httpPerfaws1: Reply Time: 107.6
+httpPerfaws1: Reply Time: 130.8
+httpPerfaws1: Reply Time: 136.6
