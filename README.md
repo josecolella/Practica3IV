@@ -34,7 +34,7 @@ máquina usará Ubuntu 13.10. Esta comparación determinará si usar un sistema
 operativo más reciente mejora el rendimiento de la máquina.
 
 * Comprobar el rendimiento de servidores web
-Se comprobará el rendimiento entre las máquinas usando dos benchmarks; ab y httperf/
+Se comprobará el rendimiento entre las máquinas usando dos benchmarks; ab y httperf
 
 Para concluir denoto las comparaciones con una tabla
 
@@ -127,6 +127,15 @@ de bases de datos a los desarrolladores. [MongoLab][2] proporciona un database-
 as-a-Service para desarrolladores gratis pero limitado. Proporcionan 500 MB de
 espacio.
 
+Ya creada una cuenta se tiene que crear un usuario para poder acceder a las
+bases de datos desde la aplicación
+
+!["Usuario"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/mongodbPhotos/Screen%20Shot%202014-01-10%20at%2010.22.10.png)
+
+Se tiene que ver que el usuario ha sido creado como en la siguiente imagen.
+
+!["Usuario creado"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/mongodbPhotos/Screen%20Shot%202014-01-10%20at%2010.43.29.png)
+
 `mongodump` para exportar las bases de datos en local e importarlas en mongolab
 con el comando `mongorestore`
 
@@ -145,6 +154,10 @@ Los comandos para importar las bases de datos y collecciones del Mongo
 mongorestore -h ds063158.mongolab.com:63158 -d dai_db -u <user> -p <password> <input db directory>
 mongorestore -h ds063158.mongolab.com:63158 -d dai_db -u <user> -p <password> <input .bson file>
 ```
+
+Ya restauradas las bases de datos tiene que tener las collecciones que se han agregado
+
+!["Cosas agregadas"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/mongodbPhotos/Screen%20Shot%202014-01-10%20at%2010.43.29.png)
 
 Para poder usarlo hay que registrarse e identificar el servicio de alojamiento
 que se usará para dicha base de datos. Yo he optado por alojamiento de Amazon Web
@@ -216,21 +229,84 @@ Los siguientes modulos se requieren para ejecutar la aplicación
 | mako   | Lenguaje de Template para Python |
 | pymongo   | Driver de Python para MongoDB |
 
+###Ubuntu 12.04
 
-La aplicación tiene que estar alojada en github.
-Usando
+Usando la interfaz web, he creado la máquina virtual. Para poder a dicha máquina desde el puerto 80, y para
+que pueda conectarse con las bases de datos de MongoLab hay que indicarle a azure que dichos puertos
+tienen que estar abiertos.
 
-```sh
-git init
-git add .
-git commit -m "First commit"
-git remote add origin git@github.com:josecolella/DAI_Practica4.git
-git push -u origin master
+En la siguiente imagen se puede ver la especificación de dichas reglas.
+
+![""](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/azure2Photos/Screen%20Shot%202014-01-11%20at%2019.05.19.png)
+
+Ahora hay que conectarse mediante ssh para poder desplegar la aplicación.
+Después hay que descargarse git para poder automatizar el proceso de despligue:
+
+```bash
+sudo apt-get install -y git
 ```
 
-tendremos alojada la aplicación
+Cuando se descarga el script mediante git clone, se tiene que ejecutar.
+A continuación se puede ver los comandos a seguir.
+
+```bash
+git clone https://gist.github.com/8374477.git Automate
+cd Automate/
+chmod +x automate.sh
+source automate.sh
+```
+
+En la siguiente imagen se puede ver que la aplicación ha sido desplegada correctamente.
+
+![""](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/azure1Photos/Screen%20Shot%202014-01-11%20at%2022.33.44.png)
+
+En la siguiente imagen se puede ver que se ha autentificado con exito, y esto significa que se ha hecho una conexión con las bases de
+datos en MongoLab.
+
+![""](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/azure1Photos/Screen%20Shot%202014-01-11%20at%2022.33.46.png)
+
+El dns de la aplicación es http://ivmachine.cloudapp.net/
 
 
+
+###CentOS 6.3
+
+Para crear la máquina he seguido el mismo procedimiento pero hay que escoger OpenLogic
+como sistema operativo en vez que Ubuntu.
+
+Accediendo mediante ssh como se puede ver en la siguiente imagen
+
+![""](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/azure2Photos/Screen%20Shot%202014-01-12%20at%2000.46.18.png)
+
+se ejecutan los siguintes comandos:
+
+```bash
+sudo yum update
+sudo yum groupinstall -y "Development tools"
+
+# Instalar web.py
+sudo easy_install web.py
+#Instalar lenguaje de templating
+sudo easy_install mako
+#Instalar driver para mongodb-server
+sudo easy_install pymongo
+#Instalar interfaz de twitter
+sudo easy_install tweepy
+# Instalar el feedparser
+sudo easy_install feedparser
+
+git clone https://github.com/josecolella/DAI_Practica4.git
+cd DAI_Practica4
+chmod +x index.py
+# Para que el script siga ejecutando despues de que salga de ssh
+sudo nohup ./index.py 80 &
+```
+
+En la siguiente imagen se puede ver que se ha desplegado correctamente la aplicación
+
+![""](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/azure2Photos/Screen%20Shot%202014-01-12%20at%2000.57.42.png)
+
+El dns del sitio es http://ivmachine2.cloudapp.net/
 
 AWS
 ====
@@ -242,6 +318,8 @@ Yo he optado por crear la máquina virtual con la interfaz gráfica ya que hay
 muchas opciones que considerar. La cuenta que ofrecen AWS a los usuarios de no pago
 solo proporciona la habilidad de crear una micro-instancia.
 
+!["Micro Instancia"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/aws1photos/tiMicro.png)
+
 Cuando se crea la máquina virtual hay que crear un certificado .pem para poder
 acceder a el desde manera remota. También hay que configurar los grupos de seguridad
 que habilitan el acceso al puerto 80 desde afuera, así se puede visualizar la
@@ -249,6 +327,8 @@ applicación que esta almacenada dentro de dicha máquina. El los grupos de segu
 hay que especificar que se tiene que abrir el puerto a donde se conectará a las bases
 de datos de MongoLab. En mi caso es por el puerto 63158. En los grupos de seguridad
 se expresa con una "Custom Rule" de tipo de conexión TCP.
+
+!["Grupo de seguridad"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/aws1photos/SecurityGroup.png)
 
 Para poder acceder a AWS necesitas el certificado .pem que se proporciona al momento
 de crear una instancia EC2.
@@ -260,22 +340,99 @@ La primera máquina que he creado es un servidor que tiene la distribución Ubun
 ssh -i josecolella.pem ubuntu@54.194.187.157
 ```
 
-http://ec2-54-194-187-157.eu-west-1.compute.amazonaws.com/
+Ya dentro se ha descargado git para poder obtener el script de automatización
+se ha ejecutado dicho script con:
 
-####Red Hat Enterprise Linux 6.4
-
-
-yum install git
-```sh
-ssh -i josecolella.pem ec2-user@54.194.113.118
+```bash
+source automate.sh
 ```
 
+En la siguiente imagen se puede ver que se ha desplegado la aplicación correctamente
 
-http://ec2-54-194-113-118.eu-west-1.compute.amazonaws.com
+![""](https://github.com/josecolella/Practica3IV/blob/master/Screenshots/aws1photos/Screen%20Shot%202014-01-11%20at%2022.37.38.png)
+
+Además que si me autentifico en el formulario de entrada, entra a la cuenta que había
+creado. Esto significa que la conexión con las bases de datos alojadas en MongoLab se
+ha hecho bien.
+
+La url de la primera máquina montada es http://ec2-54-194-187-157.eu-west-1.compute.amazonaws.com/
+
+#####Red Hat Enterprise Linux
+
+Para la segunda máquina se ha seguido el mismo procedimiento, excepto que se ha escojido el sistema operativo
+Red Hat Linux.
+
+![""](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/aws2Photos/Screen%20Shot%202014-01-12%20at%2000.08.50.png)
+
+En la siguiente imagen se puede comprobar la distribución:
+
+![""](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/aws2Photos/Screen%20Shot%202014-01-12%20at%2000.12.41.png)
+
+Para poder desplegar la aplicación he usado los siguientes comandos:
+
+```bash
+sudo yum update
+sudo yum groupinstall -y "Development tools"
+
+# Instalar web.py
+sudo easy_install web.py
+#Instalar lenguaje de templating
+sudo easy_install mako
+#Instalar driver para mongodb-server
+sudo easy_install pymongo
+#Instalar interfaz de twitter
+sudo easy_install tweepy
+# Instalar el feedparser
+sudo easy_install feedparser
+
+git clone https://github.com/josecolella/DAI_Practica4.git
+cd DAI_Practica4
+chmod +x index.py
+# Para que el script siga ejecutando despues de que salga de ssh
+sudo nohup ./index.py 80 &
+```
+
+El dns de dicha máquina es http://ec2-54-194-113-118.eu-west-1.compute.amazonaws.com
 
 
-####Vagrant
+Vagrant
+=======
 
+Vagrant es una herramienta que ofrece un despliegue rapido de un entorno de producción.
+Las configuración se hace mediante un fichero `Vagrantfile`, donde se especifican
+todas las reglas de la nueva máquina creada, desde la distribución hasta propiedades de red.
+
+Para instalar vagrant se ejecuta
+
+```bash
+gem install vagrant
+```
+
+El despliegue de la aplicación sobre Vagrant fue el más rapido de todos.
+Esto ilustra la importancia de las herramientas de automatización como Chef y Puppet.
+
+Los benchmarks para estas máquinas se han generado desde las máquinas
+
+###Ubuntu 12.04
+
+Antes de poder crear la máquina hay que especificar un port forwarding en el fichero de configuración.
+Esto servirá para que se pueda visualizar la aplicación desde afuera.
+
+En la siguiente imagen se puede ver lo que se ha agregado al `Vagrantfile` para tener
+port-forwarding. Lo que hará esto es que desde el puerto 8080 podemos visualizar lo
+que hay en el puerto 80 de la máquina virtual
+
+!["Port Forwarding"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant1Photos/Screen%20Shot%202014-01-12%20at%2011.36.44.png)
+
+Para crear la máquina virtual se ejecuta el comando que se puede ver en la siguiente imagen:
+
+!["vagrant up"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant1Photos/Screen%20Shot%202014-01-12%20at%2011.39.11.png)
+
+Para poder acceder de manera remota se usa el comando que se puede ver en la siguiente imagen
+
+!["vagrant ssh"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant1Photos/Screen%20Shot%202014-01-12%20at%2011.39.22.png)
+
+Ahora para poder desplegar la aplicación se siguen los siguientes comandos:
 
 ```bash
 sudo apt-get install -y git
@@ -285,10 +442,47 @@ chmod +x automate.sh
 source automate.sh
 ```
 
-El despliegue de la aplicación sobre Vagrant fue el más rapido de todos.
-Esto ilustra la importancia de las herramientas de automatización como Chef y Puppet.
+Como se puede ver en la siguiente imagen la aplicación se ha desplegado correctamente
 
-Los benchmarks para estas máquinas se han generado desde las máquinas
+!["application"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant1Photos/Screen%20Shot%202014-01-12%20at%2011.43.25.png)
+
+El fichero vagrant de esta máquina se puede encontrar [aquí](https://github.com/josecolella/Practica3IV/blob/master/Vagrantfile1)
+
+###Ubuntu 13.10
+
+Para crear la segunda máquina se han tenido que hacer dos cambios en el fichero de configuración.
+Uno es cambiar el sistema operativo que se va a descargar, y hacer lo de port forwarding
+
+En la siguiente imagen se puede ver como se hace para cambiar el sistema operativo que se
+descarga. Se cambia la url en el cual vagrant busca la distribución.
+
+!["Cambio en sistema"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant2Photos/Screen%20Shot%202014-01-12%20at%2011.56.05.png)
+
+En la siguiente imagen se puede ver lo que se tiene que cambiar para tener
+port-forwarding. En este caso se redirige al puerto 8081 ya que el 8080 esta usado
+por la primera máquina.
+
+!["Port Forwarding"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant2Photos/Screen%20Shot%202014-01-12%20at%2011.59.56.png)
+
+Se crea la máquina con el comando que se visualiza en la siguiente imagen
+
+!["vagrant up"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant2Photos/Screen%20Shot%202014-01-12%20at%2012.02.18.png)
+
+Se accede remotamente para poder desplegar la aplicación.
+
+```bash
+vagrant ssh
+```
+
+En la siguiente imagen se puede ver que la máquina vagrant emplea Ubuntu 13.10
+
+!["distribution"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant2Photos/Screen%20Shot%202014-01-12%20at%2012.02.43.png)
+
+Finalmente se puede ver que la aplicación se ha desplegado correctamente
+
+!["application"](https://raw.github.com/josecolella/Practica3IV/master/Screenshots/vagrant2Photos/Screen%20Shot%202014-01-12%20at%2012.06.44.png)
+
+El fichero vagrant de esta máquina se puede encontrar [aquí](https://github.com/josecolella/Practica3IV/blob/master/Vagrantfile2)
 
 Benchmarks
 ==========
