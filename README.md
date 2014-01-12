@@ -496,6 +496,9 @@ todo el tiempo posible.
 Se han ejecutado los benchmarks desde un ordenador externo para también tener
 en cuenta la latencia de red.
 
+Sobre cada máquina se ejecutará los dos benchmarks y se sacará el promedio de los resultados
+
+
 ###ab
 ab es una benchmark para comprobar el rendimiento del servidor web que esta sirviendo
 la aplicación. En este caso esta haciendo el benchmark sobre el CGI que proporciona web.py
@@ -550,44 +553,136 @@ es optima para la aplicación.
 
 ###Resultados
 
-###ab
+Para los resultados se ha obtenido la media de los resultados obtenidos.
+He automatizado este proceso usando un script en python
 
-|  Máquina    | Tiempo por Petición [ms] |
-| ------------- |:-------------:|
-| aws1  |  |
-| azure1   |  |
+A continuación se puede ver el código
 
-|  Máquina    | Tiempo por Petición [ms] |
-| ------------- |:-------------:|
-| aws2   |  |
-| azure2   |  |
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-|  Máquina    | Tiempo por Petición [ms] |
-| ------------- |:-------------:|
-| vagrant1   |  |
-| vagrant2  |  |
+import re
 
+
+ABaws1FileIndex = "abaws1"
+ABaws2FileIndex = "abaws2"
+ABazure1FileIndex = "abazure1"
+ABazure2FileIndex = "abazure2"
+ABvagrant1FileIndex = "abvagrant1"
+ABvagrant2FileIndex = "abvagrant2"
+
+HttpPerfaws1Index = "httpPerfaws1"
+HttpPerfaws2Index = "httpPerfaws2"
+HttpPerfazure1Index = "httpPerfazure1"
+HttpPerfazure2Index = "httpPerfazure2"
+HttpPerfvagrant1Index = "httpPerfvagrant1"
+HttpPerfvagrant2Index = "httpPerfvagrant2"
+
+
+tupleABFileIndex = (
+    ABaws1FileIndex, ABaws2FileIndex, ABazure1FileIndex, ABazure2FileIndex,
+    ABvagrant1FileIndex, ABvagrant2FileIndex)
+
+tupleHttpPerf = (HttpPerfaws1Index, HttpPerfaws2Index, HttpPerfazure1Index,
+                 HttpPerfazure2Index, HttpPerfvagrant1Index, HttpPerfvagrant2Index
+                 )
+
+
+totalTimePerRequest = 0.0
+numTimes = 5
+# Process
+#
+for index in tupleABFileIndex:
+    fo = open(index + "Result.txt", "w")
+    for i in range(1, 6):
+        file = index + str(i) + ".txt"
+        fi = open(file)
+        fStr = fi.read()
+        timePerRequest = re.search(
+            'Time per request:\s+(\d+\.\d+).*\n', fStr)
+        if timePerRequest:
+            timePerRequest = timePerRequest.group(1)
+            totalTimePerRequest += float(timePerRequest)
+    fo.write(
+        "{}\n".format(str(totalTimePerRequest / numTimes)))
+    fo.close()
+
+
+replyTime = 0
+numTimes = 5
+for index in tupleHttpPerf:
+    fo = open(index + "Result.txt", "w")
+    for i in range(1, 6):
+        file = index + str(i) + ".txt"
+        fi = open(file)
+        fStr = fi.read()
+        timePerRequest = re.search(
+            'Reply time \[ms\]: response (\d+\.\d+).*', fStr)
+        if timePerRequest:
+            timePerRequest = timePerRequest.group(1)
+            replyTime += float(timePerRequest)
+    fo.write(
+        "{}\n".format(str(replyTime / numTimes)))
+    fo.close()
+
+```
 
 ###httperf
 
+|  Máquina    | Tiempo de respuesta [ms] |
+| ------------- |:-------------:|
+| aws1  |  118.52 |
+| azure1   | 239.82 |
 
 |  Máquina    | Tiempo de respuesta [ms] |
 | ------------- |:-------------:|
-| aws1  |  |
-| azure1   |  |
+| aws2   | 118.52 |
+| azure2   | 239.82 |
 
 |  Máquina    | Tiempo de respuesta [ms] |
 | ------------- |:-------------:|
-| aws2   |  |
-| azure2   |  |
+| vagrant1   | 242.6 |
+| vagrant2  | 245.78 |
 
-|  Máquina    | Tiempo de respuesta [ms] |
+
+###ab
+
+
+|  Máquina    | Tiempo por Petición [ms] |
 | ------------- |:-------------:|
-| vagrant1   |  |
-| vagrant2  |  |
+| aws1 Ubuntu 12.04 LTS |  570.1661999999999 |
+| azure1  Ubuntu 12.04 LTS  |  1139.108 |
+
+|  Máquina    | Tiempo por Petición [ms] |
+| ------------- |:-------------:|
+| aws2  Red Hat 6.4 | 570.1661999999999  |
+| azure2 CentOS 6.4   | 1759.6709999999998|
+
+|  Máquina    | Tiempo por Petición [ms] |
+| ------------- |:-------------:|
+| vagrant1 Ubuntu 12.04 LTS  | 2127.46 |
+| vagrant2 Ubuntu 13.10 | 2512.1052 |
 
 
-aws1 570.1661999999999
+Conclusiones
+=============
+
+De los dos proveedores de IaaS que he comparado opto por aws en base a los
+resultados de los benchmarks. En los dos benchmarks ha tenido mejores resultados
+tanto en Ubuntu como en Red Hat. Ahora al momento de escoger una distribución opto
+por Ubuntu 12.04 ya que tiene soporte a largo plazo.
+En los resultados de vagrant se puede ver que el Ubuntu 13.10 no proporciona
+ganancias significativas con los benchmarks. Esto me indica que use Ubuntu 12.04,
+que aunque es más antiguo tiene más soporte de seguridad por más tiempo que es esencial
+para servidores de aplicaciones.
+Una cosa positiva que he sacado de esta práctica es el uso de un entorno de desarrollo y de testing
+que lo podemos tener con Vagrant, y usar el IaaS solo para producción.El Vagrant
+proporciona una velocidad de creación y despliegue de aplicaciones que no se
+puede ni comparan con las IaaS.
+Para finalizar, destaco el entorno de Ubuntu 12.04 de vagrant como entorno de desarrollo,
+y una micro instancia de AWS con mejoras de red que tenga las mismas configuraciones
+que la máquina vagrant.
 
 
 [1]: http://webpy.org
