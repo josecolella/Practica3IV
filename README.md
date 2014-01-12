@@ -548,6 +548,46 @@ de dichos benchmarks ya se podrán sacar conclusiones sobre cual de las opciones
 es optima para la aplicación.
 
 
+###Resultados
+
+###ab
+
+|  Máquina    | Tiempo por Petición [ms] |
+| ------------- |:-------------:|
+| aws1  |  |
+| azure1   |  |
+
+|  Máquina    | Tiempo por Petición [ms] |
+| ------------- |:-------------:|
+| aws2   |  |
+| azure2   |  |
+
+|  Máquina    | Tiempo por Petición [ms] |
+| ------------- |:-------------:|
+| vagrant1   |  |
+| vagrant2  |  |
+
+
+###httperf
+
+
+|  Máquina    | Tiempo de respuesta [ms] |
+| ------------- |:-------------:|
+| aws1  |  |
+| azure1   |  |
+
+|  Máquina    | Tiempo de respuesta [ms] |
+| ------------- |:-------------:|
+| aws2   |  |
+| azure2   |  |
+
+|  Máquina    | Tiempo de respuesta [ms] |
+| ------------- |:-------------:|
+| vagrant1   |  |
+| vagrant2  |  |
+
+
+aws1 570.1661999999999
 
 
 [1]: http://webpy.org

@@ -1,5 +1,1 @@
-httpPerfazure1: Reply Time: 108.2
-httpPerfazure1: Reply Time: 122.8
-httpPerfazure1: Reply Time: 138.8
-httpPerfazure1: Reply Time: 113.9
-httpPerfazure1: Reply Time: 122.8
+239.82000000000002

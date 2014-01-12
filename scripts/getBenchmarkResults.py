@@ -28,8 +28,10 @@ tupleHttpPerf = (HttpPerfaws1Index, HttpPerfaws2Index, HttpPerfazure1Index,
                  )
 
 
-totalTimePerRequest = 0
+totalTimePerRequest = 0.0
 numTimes = 5
+# Process
+#
 for index in tupleABFileIndex:
     fo = open(index + "Result.txt", "w")
     for i in range(1, 6):
@@ -40,8 +42,9 @@ for index in tupleABFileIndex:
             'Time per request:\s+(\d+\.\d+).*\n', fStr)
         if timePerRequest:
             timePerRequest = timePerRequest.group(1)
-            fo.write(
-                "{}: Time per Request: {}\n".format(index, timePerRequest))
+            totalTimePerRequest += float(timePerRequest)
+    fo.write(
+        "{}\n".format(str(totalTimePerRequest / numTimes)))
     fo.close()
 
 
@@ -57,6 +60,7 @@ for index in tupleHttpPerf:
             'Reply time \[ms\]: response (\d+\.\d+).*', fStr)
         if timePerRequest:
             timePerRequest = timePerRequest.group(1)
-            fo.write(
-                "{}: Reply Time: {}\n".format(index, timePerRequest))
+            replyTime += float(timePerRequest)
+    fo.write(
+        "{}\n".format(str(replyTime / numTimes)))
     fo.close()

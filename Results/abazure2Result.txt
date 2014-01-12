@@ -1,5 +1,1 @@
-abazure2: Time per Request: 426.365
-abazure2: Time per Request: 603.463
-abazure2: Time per Request: 732.927
-abazure2: Time per Request: 648.908
-abazure2: Time per Request: 691.152
+1759.6709999999998
