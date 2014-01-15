@@ -668,18 +668,39 @@ for index in tupleHttpPerf:
 
 Para ver los resultados con más claridad he creado un diagrama de barras de todas
 las comparaciones con los resultados obtenidos con el ab y httperf.
+He dividido las gráficas por benchmark, y por comparación hecha.
+
+####ab
+
+
 En la siguiente imagen, se puede ver los resultados obtenidos en la primera comparación de la máquina de AWS con Ubuntu 12.04 y Azure con Ubuntu 12.04.
 
-!["Primera Comparación"](http://f.cl.ly/items/1J3h3T141p3I0m1P251P/Image%202014-01-15%20at%2011.58.30%20am.png)
+!["Primera Comparación"](http://f.cl.ly/items/2R1V2c2V0Y0n372R1b2i/Image%202014-01-15%20at%2012.33.44%20pm.png)
 
 En la siguiente image, se puede ver los resultados obtenidos en la segunda comparación de la máquina de AWS con Red Hat Linux 6.4 y la máquina creada con Azure que tiene CentOS 6.4.
 
-!["Segunda Comparación"](http://f.cl.ly/items/2L1b1x1U1F1S1B0e2g3p/Image%202014-01-15%20at%2011.58.45%20am.png)
+!["Segunda Comparación"](http://f.cl.ly/items/042w0l0M2P0W2d1q2z1T/Image%202014-01-15%20at%2012.33.49%20pm.png)
 
 En la siguiente image, se puede ver los resultados obtenidos en la tercera comparación del Vagrant con Ubuntu 12.04 y 
 el Vagrant con Ubuntu 13.10
 
-!["Tercera comparación"](http://f.cl.ly/items/0m0F2L433c3A1e3U1f0M/Image%202014-01-15%20at%2011.58.50%20am.png)
+!["Tercera comparación"](http://f.cl.ly/items/083y1H2q0H3Q0S0J0511/Image%202014-01-15%20at%2012.34.34%20pm.png)
+
+
+####httperf
+
+En la siguiente imagen, se puede ver los resultados obtenidos en la primera comparación de la máquina de AWS con Ubuntu 12.04 y Azure con Ubuntu 12.04.
+
+!["Primera httperf"](http://f.cl.ly/items/2n3H3D0v2f1w3r3w3n0W/Image%202014-01-15%20at%2012.33.29%20pm.png)
+
+En la siguiente image, se puede ver los resultados obtenidos en la segunda comparación de la máquina de AWS con Red Hat Linux 6.4 y la máquina creada con Azure que tiene CentOS 6.4.
+
+!["Segunda httperf"](http://f.cl.ly/items/1T2Y2h0K2m323j3R2J2u/Image%202014-01-15%20at%2012.33.33%20pm.png)
+
+En la siguiente image, se puede ver los resultados obtenidos en la tercera comparación del Vagrant con Ubuntu 12.04 y 
+el Vagrant con Ubuntu 13.10
+
+!["Tercera httperf"](http://f.cl.ly/items/2O3I411o3F390m1L0F3x/Image%202014-01-15%20at%2012.33.39%20pm.png)
 
 Conclusiones
 =============
