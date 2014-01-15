@@ -675,32 +675,31 @@ He dividido las gráficas por benchmark, y por comparación hecha.
 
 En la siguiente imagen, se puede ver los resultados obtenidos en la primera comparación de la máquina de AWS con Ubuntu 12.04 y Azure con Ubuntu 12.04.
 
-!["Primera Comparación"](http://f.cl.ly/items/2R1V2c2V0Y0n372R1b2i/Image%202014-01-15%20at%2012.33.44%20pm.png)
+!["Primera Comparación"](https://raw.github.com/josecolella/Practica3IV/master/abaws1vsazure1.png)
 
 En la siguiente image, se puede ver los resultados obtenidos en la segunda comparación de la máquina de AWS con Red Hat Linux 6.4 y la máquina creada con Azure que tiene CentOS 6.4.
 
-!["Segunda Comparación"](http://f.cl.ly/items/042w0l0M2P0W2d1q2z1T/Image%202014-01-15%20at%2012.33.49%20pm.png)
+!["Segunda Comparación"](https://raw.github.com/josecolella/Practica3IV/master/abaws2vsazure2.png)
 
 En la siguiente image, se puede ver los resultados obtenidos en la tercera comparación del Vagrant con Ubuntu 12.04 y 
 el Vagrant con Ubuntu 13.10
 
-!["Tercera comparación"](http://f.cl.ly/items/083y1H2q0H3Q0S0J0511/Image%202014-01-15%20at%2012.34.34%20pm.png)
-
+!["Tercera comparación"](https://raw.github.com/josecolella/Practica3IV/master/abvagrant1vsvagrant2.png)
 
 ####httperf
 
 En la siguiente imagen, se puede ver los resultados obtenidos en la primera comparación de la máquina de AWS con Ubuntu 12.04 y Azure con Ubuntu 12.04.
 
-!["Primera httperf"](http://f.cl.ly/items/2n3H3D0v2f1w3r3w3n0W/Image%202014-01-15%20at%2012.33.29%20pm.png)
+!["Primera httperf"](https://raw.github.com/josecolella/Practica3IV/master/httperfaws1vsazure1.png)
 
 En la siguiente image, se puede ver los resultados obtenidos en la segunda comparación de la máquina de AWS con Red Hat Linux 6.4 y la máquina creada con Azure que tiene CentOS 6.4.
 
-!["Segunda httperf"](http://f.cl.ly/items/1T2Y2h0K2m323j3R2J2u/Image%202014-01-15%20at%2012.33.33%20pm.png)
+!["Segunda httperf"](https://raw.github.com/josecolella/Practica3IV/master/httperfaws2vsazure2.png)
 
 En la siguiente image, se puede ver los resultados obtenidos en la tercera comparación del Vagrant con Ubuntu 12.04 y 
 el Vagrant con Ubuntu 13.10
 
-!["Tercera httperf"](http://f.cl.ly/items/2O3I411o3F390m1L0F3x/Image%202014-01-15%20at%2012.33.39%20pm.png)
+!["Tercera httperf"](https://raw.github.com/josecolella/Practica3IV/master/httperfvagrant1vsvagrant2.png)
 
 Conclusiones
 =============
