@@ -664,6 +664,22 @@ for index in tupleHttpPerf:
 | vagrant1 Ubuntu 12.04 LTS  | 2127.46 |
 | vagrant2 Ubuntu 13.10 | 2512.1052 |
 
+###Gráficos
+
+Para ver los resultados con más claridad he creado un diagrama de barras de todas
+las comparaciones con los resultados obtenidos con el ab y httperf.
+En la siguiente imagen, se puede ver los resultados obtenidos en la primera comparación de la máquina de AWS con Ubuntu 12.04 y Azure con Ubuntu 12.04.
+
+!["Primera Comparación"](http://f.cl.ly/items/1J3h3T141p3I0m1P251P/Image%202014-01-15%20at%2011.58.30%20am.png)
+
+En la siguiente image, se puede ver los resultados obtenidos en la segunda comparación de la máquina de AWS con Red Hat Linux 6.4 y la máquina creada con Azure que tiene CentOS 6.4.
+
+!["Segunda Comparación"](http://f.cl.ly/items/2L1b1x1U1F1S1B0e2g3p/Image%202014-01-15%20at%2011.58.45%20am.png)
+
+En la siguiente image, se puede ver los resultados obtenidos en la tercera comparación del Vagrant con Ubuntu 12.04 y 
+el Vagrant con Ubuntu 13.10
+
+!["Tercera comparación"](http://f.cl.ly/items/0m0F2L433c3A1e3U1f0M/Image%202014-01-15%20at%2011.58.50%20am.png)
 
 Conclusiones
 =============
